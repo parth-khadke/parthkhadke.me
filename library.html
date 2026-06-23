@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bookshelf of Parth Khadke.">
+    <title>Library | Parth Khadke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root { --bg:#0a0a0a; --surface:#111; --border:#2a2a2a; --text-pri:#f0ede4; --text-mut:#8a8278; --amber:#e8a020; --font-display:"Cormorant Garamond",Georgia,serif; --font-ui:"Inter",system-ui,sans-serif; --font-mono:"JetBrains Mono",monospace; --max-w:920px; --pad:clamp(20px,6vw,56px); }
+        *{box-sizing:border-box;margin:0;padding:0} html,body{background:var(--bg);color:var(--text-pri);min-height:100vh} body{font-family:var(--font-ui);line-height:1.6}
+        nav{position:sticky;top:0;height:58px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(10,10,10,.88);backdrop-filter:blur(12px)}
+        .nav-logo{font-family:var(--font-mono);font-size:13px;color:var(--text-mut);text-decoration:none}.nav-links{display:flex;gap:clamp(14px,4vw,30px);list-style:none}.nav-links a{color:var(--text-mut);font-size:13px;text-decoration:none}.nav-links a:hover,.nav-links a.active,.nav-logo:hover{color:var(--amber)}
+        main{max-width:var(--max-w);margin:0 auto;padding:76px var(--pad)}
+        .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}.title{font-family:var(--font-display);font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.03;margin-bottom:16px}.subtitle{color:var(--text-mut);max-width:560px;line-height:1.75;margin-bottom:42px}
+        .books{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:30px;padding:28px;border:1px solid var(--border);border-radius:6px;background:var(--surface)}
+        .book{text-align:center}.book img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:3px;border:1px solid var(--border);border-bottom:3px solid var(--amber);box-shadow:0 12px 28px rgba(0,0,0,.32);margin-bottom:10px}.book-title{font-size:13px;color:var(--text-pri)}.book-author{font-family:var(--font-mono);font-size:11px;color:var(--text-mut);margin-top:3px}
+        footer{max-width:var(--max-w);margin:0 auto;padding:28px var(--pad);border-top:1px solid var(--border);color:var(--text-mut);font-family:var(--font-mono);font-size:12px}
+        @media(max-width:680px){.books{grid-template-columns:repeat(2,1fr);gap:22px;padding:20px}} @media(max-width:380px){.books{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="nav-logo">pk.me</a>
+        <ul class="nav-links">
+            <li><a href="projects.html">Work</a></li>
+            <li><a href="essays.html">Writing</a></li>
+            <li><a href="library.html" class="active">Library</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <p class="eyebrow">Library</p>
+        <h1 class="title">Bookshelf</h1>
+        <p class="subtitle">A demo shelf of books that have influenced my thinking. The covers are loaded from the repo's `assets` folder.</p>
+        <section class="books" aria-label="Bookshelf">
+            <article class="book"><img src="assets/alchemist.jpg" alt="The Alchemist book cover"><p class="book-title">The Alchemist</p><p class="book-author">Paulo Coelho</p></article>
+            <article class="book"><img src="assets/almanack.jpg" alt="The Almanack of Naval Ravikant book cover"><p class="book-title">The Almanack of Naval Ravikant</p><p class="book-author">Eric Jorgenson</p></article>
+            <article class="book"><img src="assets/power_of_now.jpg" alt="The Power of Now book cover"><p class="book-title">The Power of Now</p><p class="book-author">Eckhart Tolle</p></article>
+            <article class="book"><img src="assets/psycho_cybernetics.jpg" alt="Psycho-Cybernetics book cover"><p class="book-title">Psycho-Cybernetics</p><p class="book-author">Maxwell Maltz</p></article>
+            <article class="book"><img src="assets/richest_man_in_babylon.jpg" alt="The Richest Man in Babylon book cover"><p class="book-title">The Richest Man in Babylon</p><p class="book-author">George S. Clason</p></article>
+            <article class="book"><img src="assets/millionaire_fastlane.webp" alt="The Millionaire Fastlane book cover"><p class="book-title">The Millionaire Fastlane</p><p class="book-author">M. J. DeMarco</p></article>
+            <article class="book"><img src="assets/become_what_you_are.jpg" alt="Become What You Are book cover"><p class="book-title">Become What You Are</p><p class="book-author">Alan Watts</p></article>
+            <article class="book"><img src="assets/aghora_vol1.jpg" alt="Aghora Volume 1 book cover"><p class="book-title">Aghora Vol. 1</p><p class="book-author">Robert E. Svoboda</p></article>
+            <article class="book"><img src="assets/LOTR_VOL1.jpg" alt="The Lord of the Rings Volume 1 book cover"><p class="book-title">The Lord of the Rings Vol. 1</p><p class="book-author">J. R. R. Tolkien</p></article>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 Parth Khadke</footer>
+</body>
+</html>

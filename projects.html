@@ -3,324 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projects by Parth Khadke — case studies with thinking, not just screenshots.">
-    <title>Work — Parth Khadke</title>
+    <meta name="description" content="Projects by Parth Khadke.">
+    <title>Work | Parth Khadke</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        /* ─── TOKENS ─────────────────────────────────────────────────── */
         :root {
-            --bg:           #0A0A0A;
-            --surface:      #111111;
-            --raised:       #1C1C1C;
-            --border:       #2A2A2A;
-            --text-pri:     #F0EDE4;
-            --text-mut:     #8A8278;
-            --emerald:      #2ECC8F;
-            --emerald-bg:   #0D2B1F;
-
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --border: #2a2a2a;
+            --text-pri: #f0ede4;
+            --text-mut: #8a8278;
+            --emerald: #2ecc8f;
+            --emerald-bg: #0d2b1f;
             --font-display: "Cormorant Garamond", Georgia, serif;
-            --font-ui:      "Inter", system-ui, sans-serif;
-            --font-mono:    "JetBrains Mono", monospace;
-
-            --max-w:        700px;
-            --margin:       40px;
-            --transition:   150ms ease;
+            --font-ui: "Inter", system-ui, sans-serif;
+            --font-mono: "JetBrains Mono", monospace;
+            --max-w: 760px;
+            --margin: clamp(20px, 5vw, 44px);
         }
-
-        /* ─── RESET ──────────────────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html { background: var(--bg); color: var(--text-pri); scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-ui);
-            font-size: 14px;
-            line-height: 1.6;
-            background: var(--bg);
-            min-height: 100vh;
-        }
-
-        /* ─── NAV ────────────────────────────────────────────────────── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { background: var(--bg); color: var(--text-pri); font-family: var(--font-ui); min-height: 100vh; }
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 var(--margin);
-            border-bottom: 0.5px solid var(--border);
-            background: rgba(10, 10, 10, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 10;
+            height: 58px; padding: 0 var(--margin);
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.88); backdrop-filter: blur(12px);
         }
-
-        .nav-logo {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--text-mut);
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            transition: color var(--transition);
-        }
-        .nav-logo:hover { color: var(--text-pri); }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-mut);
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color var(--transition);
-        }
-        .nav-links a:hover { color: var(--text-pri); }
-        .nav-links a.active { color: var(--emerald); }
-
-        /* ─── PAGE SHELL ─────────────────────────────────────────────── */
-        .page {
-            max-width: var(--max-w);
-            margin: 0 auto;
-            padding: 120px var(--margin) 96px;
-        }
-
-        /* ─── PAGE HEADER ────────────────────────────────────────────── */
-        .page-header {
-            margin-bottom: 64px;
-            padding-bottom: 40px;
-            border-bottom: 0.5px solid var(--border);
-        }
-
-        .page-eyebrow {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--emerald);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .page-title {
-            font-family: var(--font-display);
-            font-size: 52px;
-            font-weight: 600;
-            color: var(--text-pri);
-            line-height: 1.05;
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-        }
-
-        .page-desc {
-            font-size: 17px;
-            color: var(--text-mut);
-            line-height: 1.8;
-            max-width: 520px;
-        }
-
-        /* ─── PROJECT LIST ───────────────────────────────────────────── */
-        .projects-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        /* ─── PROJECT CARD ───────────────────────────────────────────── */
+        .nav-logo, .footer-link { color: var(--text-mut); font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
+        .nav-links { display: flex; gap: clamp(14px, 4vw, 30px); list-style: none; }
+        .nav-links a { color: var(--text-mut); font-size: 13px; text-decoration: none; }
+        .nav-links a:hover, .nav-links a.active, .nav-logo:hover, .footer-link:hover { color: var(--emerald); }
+        .page { max-width: var(--max-w); margin: 0 auto; padding: 76px var(--margin) 72px; }
+        .page-header { margin-bottom: 48px; padding-bottom: 34px; border-bottom: 1px solid var(--border); }
+        .page-eyebrow { color: var(--emerald); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+        .page-title { font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; line-height: 1.05; margin-bottom: 16px; }
+        .page-desc { color: var(--text-mut); font-size: 1rem; line-height: 1.75; max-width: 560px; }
+        .projects-list { display: flex; flex-direction: column; }
         .project-card {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: start;
-            gap: 24px;
-            padding: 32px 0;
-            border-bottom: 0.5px solid var(--border);
-            text-decoration: none;
-            color: inherit;
-            transition: background var(--transition);
-            position: relative;
+            display: grid; grid-template-columns: 1fr auto; gap: 24px;
+            padding: 30px 0; border-bottom: 1px solid var(--border);
+            color: inherit; text-decoration: none;
         }
-
-        /* Left: emerald rule on hover */
-        .project-card::before {
-            content: "";
-            position: absolute;
-            left: -var(--margin);
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: var(--emerald);
-            opacity: 0;
-            transition: opacity var(--transition);
-        }
-
-        .project-card:hover::before { opacity: 1; }
-
+        .project-card:first-child { border-top: 1px solid var(--border); }
+        .project-meta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+        .project-date, .tag, .project-status { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+        .project-date { color: var(--text-mut); }
+        .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { color: var(--emerald); border: 1px solid rgba(46, 204, 143, 0.3); border-radius: 3px; padding: 2px 8px; }
+        .project-title { font-family: var(--font-display); font-size: 30px; line-height: 1.15; margin-bottom: 10px; }
+        .project-desc { color: var(--text-mut); line-height: 1.7; max-width: 540px; }
         .project-card:hover .project-title { color: var(--emerald); }
-        .project-card:hover .project-arrow { color: var(--emerald); transform: translate(3px, -3px); }
-
-        .project-body { min-width: 0; }
-
-        .project-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 10px;
-        }
-
-        .project-date {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-mut);
-            letter-spacing: 0.06em;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            font-size: 11px;
-            font-family: var(--font-mono);
-            letter-spacing: 0.06em;
-            padding: 2px 8px;
-            border-radius: 3px;
-            border: 0.5px solid;
-        }
-
-        .tag-emerald {
-            color: var(--emerald);
-            border-color: rgba(46, 204, 143, 0.3);
-            background: rgba(46, 204, 143, 0.06);
-        }
-
-        .project-title {
-            font-family: var(--font-display);
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--text-pri);
-            line-height: 1.15;
-            letter-spacing: -0.01em;
-            margin-bottom: 10px;
-            transition: color var(--transition);
-        }
-
-        .project-desc {
-            font-size: 14px;
-            color: var(--text-mut);
-            line-height: 1.7;
-            max-width: 480px;
-        }
-
-        .project-aside {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
-            padding-top: 4px;
-            flex-shrink: 0;
-        }
-
-        .project-arrow {
-            font-size: 18px;
-            color: var(--text-mut);
-            transition: color var(--transition), transform var(--transition);
-            line-height: 1;
-        }
-
-        .project-status {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            padding: 3px 8px;
-            border-radius: 3px;
-        }
-
-        .status-shipped {
-            color: var(--emerald);
-            background: var(--emerald-bg);
-            border: 0.5px solid rgba(46, 204, 143, 0.25);
-        }
-
-        .status-wip {
-            color: #E8A020;
-            background: #2B1C00;
-            border: 0.5px solid rgba(232, 160, 32, 0.25);
-        }
-
-        /* ─── FOOTER ─────────────────────────────────────────────────── */
-        footer {
-            margin-top: 96px;
-            padding: 32px var(--margin);
-            border-top: 0.5px solid var(--border);
-            max-width: var(--max-w);
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: var(--text-mut);
-            letter-spacing: 0.04em;
-        }
-
-        .footer-link {
-            font-size: 12px;
-            color: var(--text-mut);
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            transition: color var(--transition);
-        }
-        .footer-link:hover { color: var(--emerald); }
-
-        /* ─── RESPONSIVE ─────────────────────────────────────────────── */
-        @media (max-width: 600px) {
-            :root { --margin: 20px; }
-
-            nav { padding: 0 20px; }
-
-            .nav-links { gap: 20px; }
-
-            .page { padding-top: 96px; }
-
-            .page-title { font-size: 36px; }
-
-            .project-card {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .project-aside {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        /* ─── REDUCED MOTION ─────────────────────────────────────────── */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                transition-duration: 1ms !important;
-            }
+        .project-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+        .project-status { border-radius: 3px; padding: 3px 8px; }
+        .status-shipped { color: var(--emerald); background: var(--emerald-bg); border: 1px solid rgba(46, 204, 143, 0.25); }
+        .status-wip { color: #e8a020; background: #2b1c00; border: 1px solid rgba(232, 160, 32, 0.25); }
+        .project-arrow { color: var(--text-mut); font-family: var(--font-mono); font-size: 12px; }
+        footer { max-width: var(--max-w); margin: 0 auto; padding: 28px var(--margin); border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 20px; }
+        .footer-copy { color: var(--text-mut); font-family: var(--font-mono); font-size: 12px; }
+        @media (max-width: 620px) {
+            .project-card { grid-template-columns: 1fr; }
+            .project-aside { align-items: flex-start; flex-direction: row; justify-content: space-between; }
         }
     </style>
 </head>
 <body>
-
-    <!-- NAV -->
-    <nav>
+    <nav aria-label="Site navigation">
         <a href="index.html" class="nav-logo">pk.me</a>
         <ul class="nav-links">
             <li><a href="projects.html" class="active">Work</a></li>
@@ -330,100 +81,55 @@
         </ul>
     </nav>
 
-    <!-- MAIN -->
     <main class="page">
-
         <header class="page-header">
             <p class="page-eyebrow">Work</p>
             <h1 class="page-title">Things I've built.</h1>
-            <p class="page-desc">Case studies with thinking, not just screenshots. Every project here has a decision I made, a mistake I learned from, or a question I'm still sitting with.</p>
+            <p class="page-desc">Case studies with thinking, not just screenshots. These are editable demo entries for today's walkthrough.</p>
         </header>
 
         <div class="projects-list">
-
-            <!-- PROJECT 1 -->
-            <a href="projects/project1.html" class="project-card">
+            <a href="projects/skillforge.html" class="project-card">
                 <div class="project-body">
                     <div class="project-meta">
                         <span class="project-date">Jun 2026</span>
                         <div class="project-tags">
-                            <span class="tag tag-emerald">AI</span>
-                            <span class="tag tag-emerald">Full-stack</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">Full-stack</span>
                         </div>
                     </div>
                     <h2 class="project-title">SkillForge</h2>
-                    <p class="project-desc">An AI-powered learning roadmap generator that turns vague goals into structured paths. Built to scratch my own itch with learning new technologies.</p>
+                    <p class="project-desc">An AI-powered learning roadmap generator that turns vague goals into structured paths for self-taught developers.</p>
                 </div>
                 <div class="project-aside">
                     <span class="project-status status-shipped">Shipped</span>
-                    <span class="project-arrow">↗</span>
+                    <span class="project-arrow">Open</span>
                 </div>
             </a>
 
-            <!-- PROJECT 2 -->
-            <a href="projects/project2.html" class="project-card">
+            <a href="projects/alphabetninja.html" class="project-card">
                 <div class="project-body">
                     <div class="project-meta">
                         <span class="project-date">Apr 2026</span>
                         <div class="project-tags">
-                            <span class="tag tag-emerald">Dev Tool</span>
-                            <span class="tag tag-emerald">CLI</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Learning</span>
                         </div>
                     </div>
-                    <h2 class="project-title">Commit</h2>
-                    <p class="project-desc">A CLI that writes your git commit messages using the diff as context. Not a novel idea — but my implementation forced me to think hard about what "useful" actually means.</p>
-                </div>
-                <div class="project-aside">
-                    <span class="project-status status-shipped">Shipped</span>
-                    <span class="project-arrow">↗</span>
-                </div>
-            </a>
-
-            <!-- PROJECT 3 -->
-            <a href="projects/project3.html" class="project-card">
-                <div class="project-body">
-                    <div class="project-meta">
-                        <span class="project-date">Feb 2026</span>
-                        <div class="project-tags">
-                            <span class="tag tag-emerald">Data</span>
-                            <span class="tag tag-emerald">Visualization</span>
-                        </div>
-                    </div>
-                    <h2 class="project-title">Pulse</h2>
-                    <p class="project-desc">A personal analytics dashboard that turns raw exported data from apps I use into a single reading of how I spend my time. Built for clarity, not completeness.</p>
+                    <h2 class="project-title">AlphabetNinja</h2>
+                    <p class="project-desc">A beginner-friendly Java learning game built around fast recognition, repetition, and playful feedback loops.</p>
                 </div>
                 <div class="project-aside">
                     <span class="project-status status-wip">In Progress</span>
-                    <span class="project-arrow">↗</span>
+                    <span class="project-arrow">Open</span>
                 </div>
             </a>
-
-            <!-- PROJECT 4 -->
-            <a href="projects/project4.html" class="project-card">
-                <div class="project-body">
-                    <div class="project-meta">
-                        <span class="project-date">Nov 2025</span>
-                        <div class="project-tags">
-                            <span class="tag tag-emerald">Mobile</span>
-                            <span class="tag tag-emerald">React Native</span>
-                        </div>
-                    </div>
-                    <h2 class="project-title">Margins</h2>
-                    <p class="project-desc">A reading companion app for people who annotate obsessively. Captures highlights and surfaces them weeks later as prompts to think with.</p>
-                </div>
-                <div class="project-aside">
-                    <span class="project-status status-shipped">Shipped</span>
-                    <span class="project-arrow">↗</span>
-                </div>
-            </a>
-
         </div>
     </main>
 
     <footer>
         <span class="footer-copy">&copy; 2026 Parth Khadke</span>
-        <a href="index.html" class="footer-link">← Back home</a>
+        <a href="index.html" class="footer-link">Back home</a>
     </footer>
-
 </body>
 </html>

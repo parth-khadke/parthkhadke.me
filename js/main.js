@@ -121,3 +121,93 @@ if (menuToggle && navPanel && navOverlay) {
         );
     });
 }
+
+// Contact form validation
+(function () {
+    'use strict';
+
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    const fields = {
+        name: document.getElementById('cf-name'),
+        email: document.getElementById('cf-email'),
+        message: document.getElementById('cf-message')
+    };
+
+    const errors = {
+        name: document.getElementById('cf-name-error'),
+        email: document.getElementById('cf-email-error'),
+        message: document.getElementById('cf-message-error')
+    };
+
+    const status = document.getElementById('cf-status');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const urlPattern = /(https?:\/\/|www\.|\.com|\.net|\.org|\.io)/i;
+    const repeatedPattern = /(.)\1{5,}/;
+
+    function setError(key, message) {
+        const field = fields[key];
+        const error = errors[key];
+        if (!field || !error) return;
+
+        error.textContent = message;
+        field.classList.toggle('is-invalid', Boolean(message));
+        field.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function validateField(key) {
+        const value = fields[key].value.trim();
+
+        if (key === 'name') {
+            if (value.length < 2) return 'Please enter your name.';
+            if (value.length > 80) return 'Name must stay under 80 characters.';
+            if (!/^[a-zA-Z\s.'-]+$/.test(value)) return 'Name can only use letters, spaces, and simple punctuation.';
+            if (urlPattern.test(value) || repeatedPattern.test(value)) return 'Please enter a real name.';
+        }
+
+        if (key === 'email') {
+            if (!value) return 'Please enter your email.';
+            if (!emailPattern.test(value)) return 'Please enter a valid email address.';
+            if (value.length > 120 || repeatedPattern.test(value)) return 'Please enter a valid email address.';
+        }
+
+        if (key === 'message') {
+            if (value.length < 12) return 'Please write at least 12 characters.';
+            if (value.length > 1000) return 'Message must stay under 1000 characters.';
+            if (repeatedPattern.test(value)) return 'Please avoid repeated filler characters.';
+            if (value.split(/\s+/).filter(Boolean).length < 3) return 'Please write a short, clear message.';
+        }
+
+        return '';
+    }
+
+    Object.keys(fields).forEach((key) => {
+        fields[key].addEventListener('input', () => {
+            setError(key, validateField(key));
+            if (status) status.textContent = '';
+        });
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        let firstInvalid = null;
+        Object.keys(fields).forEach((key) => {
+            const message = validateField(key);
+            setError(key, message);
+            if (message && !firstInvalid) firstInvalid = fields[key];
+        });
+
+        if (firstInvalid) {
+            if (status) status.textContent = '';
+            firstInvalid.focus();
+            return;
+        }
+
+        if (status) {
+            status.textContent = 'Looks good. Hook this form to your mail service when you are ready.';
+        }
+        form.reset();
+    });
+}());

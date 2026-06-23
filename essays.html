@@ -3,47 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Essays by Parth Khadke — thoughts on growth, language, identity, and the present moment.">
+    <meta name="description" content="Essays by Parth Khadke.">
     <title>Essays | Parth Khadke</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="css/essays.css">
 </head>
 <body>
-
-    <!-- NAV -->
     <nav class="nav" aria-label="Site navigation">
-        <a href="../index.html" class="nav-logo">PK</a>
+        <a href="index.html" class="nav-logo">PK</a>
         <div class="nav-links">
-            <a href="../projects/index.html">Work</a>
-            <a href="index.html" class="active">Writing</a>
-            <a href="../library/index.html">Library</a>
-            <a href="../index.html#about">About</a>
+            <a href="projects.html">Work</a>
+            <a href="essays.html" class="active">Writing</a>
+            <a href="library.html">Library</a>
+            <a href="about.html">About</a>
         </div>
     </nav>
 
-    <!-- PAGE HEADER -->
     <header class="page-header">
         <p class="page-eyebrow">Writing</p>
         <h1 class="page-title">Essays</h1>
-        <p class="page-subtitle">Dispatches on growth, language, identity, and the present moment.</p>
+        <p class="page-subtitle">Short notes on attention, identity, building, and the present moment.</p>
     </header>
 
-    <!-- FILTER TAGS -->
     <div class="filter-bar" role="navigation" aria-label="Filter by topic">
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="growth">Growth</button>
-        <button class="filter-btn" data-filter="language">Language</button>
-        <button class="filter-btn" data-filter="identity">Identity</button>
         <button class="filter-btn" data-filter="present">Present Moment</button>
+        <button class="filter-btn" data-filter="identity">Identity</button>
+        <button class="filter-btn" data-filter="focus">Focus</button>
     </div>
 
-    <!-- ESSAY LIST -->
     <main class="essay-list" id="essay-list" aria-label="Essays">
-
-        <!-- Essay Card -->
         <article class="essay-card" data-tags="present identity">
             <div class="essay-card-body">
                 <div class="essay-meta-top">
@@ -53,126 +45,66 @@
                     </div>
                     <time class="essay-date" datetime="2025-06-04">Jun 4</time>
                 </div>
-                <a href="/essays/writingtowrite.html" class="essay-link">
+                <a href="essays/writingtowrite.html" class="essay-link">
                     <h2 class="essay-title">Trying to Catch Rain with A Notebook</h2>
-                    <p class="essay-excerpt">The frustration of losing profound thoughts, and the discovery that journaling is a way to catch them…</p>
+                    <p class="essay-excerpt">The frustration of losing profound thoughts, and the discovery that journaling is a way to catch them.</p>
                 </a>
                 <div class="essay-meta-bottom">
-                    <span class="essay-byline">Parth Khadke · 3 min read</span>
+                    <span class="essay-byline">Parth Khadke - 3 min read</span>
                     <div class="essay-tags">
                         <span class="essay-tag tag-present">Present Moment</span>
                         <span class="essay-tag tag-identity">Identity</span>
                     </div>
                 </div>
             </div>
-            <a href="essay1.html" class="essay-card-thumb" tabindex="-1" aria-hidden="true">
-                <img src="../assets/images/essay1-thumb.jpg" alt="" loading="lazy">
+            <a href="essays/writingtowrite.html" class="essay-card-thumb essay-card-thumb--notebook" tabindex="-1" aria-hidden="true">
+                <span>Notes</span>
             </a>
         </article>
 
-        <article class="essay-card" data-tags="growth language">
+        <article class="essay-card" data-tags="focus identity">
             <div class="essay-card-body">
                 <div class="essay-meta-top">
                     <div class="author-chip">
                         <div class="author-avatar" aria-hidden="true">PK</div>
                         <span class="author-name">Parth Khadke</span>
                     </div>
-                    <time class="essay-date" datetime="2025-05-18">May 18</time>
+                    <time class="essay-date" datetime="2025-06-12">Jun 12</time>
                 </div>
-                <a href="essay2.html" class="essay-link">
-                    <h2 class="essay-title">On Learning a Language After You've Stopped Being a Child</h2>
-                    <p class="essay-excerpt">Why adult language learning is fundamentally an identity crisis, and what it teaches you about how you think.</p>
+                <a href="essays/trivial-priorities.html" class="essay-link">
+                    <h2 class="essay-title">Trivial Priorities</h2>
+                    <p class="essay-excerpt">A short reflection on how small distractions quietly become the architecture of a day.</p>
                 </a>
                 <div class="essay-meta-bottom">
-                    <span class="essay-byline">Parth Khadke · 6 min read</span>
-                    <div class="essay-tags">
-                        <span class="essay-tag tag-language">Language</span>
-                        <span class="essay-tag tag-growth">Growth</span>
-                    </div>
-                </div>
-            </div>
-            <a href="essay2.html" class="essay-card-thumb" tabindex="-1" aria-hidden="true">
-                <img src="../assets/images/essay2-thumb.jpg" alt="" loading="lazy">
-            </a>
-        </article>
-
-        <article class="essay-card" data-tags="identity growth">
-            <div class="essay-card-body">
-                <div class="essay-meta-top">
-                    <div class="author-chip">
-                        <div class="author-avatar" aria-hidden="true">PK</div>
-                        <span class="author-name">Parth Khadke</span>
-                    </div>
-                    <time class="essay-date" datetime="2025-04-02">Apr 2</time>
-                </div>
-                <a href="essay3.html" class="essay-link">
-                    <h2 class="essay-title">The Builder Who Forgot to Live</h2>
-                    <p class="essay-excerpt">On the seductive lie of deferred meaning — and why building something doesn't automatically give your life structure.</p>
-                </a>
-                <div class="essay-meta-bottom">
-                    <span class="essay-byline">Parth Khadke · 5 min read</span>
+                    <span class="essay-byline">Parth Khadke - 3 min read</span>
                     <div class="essay-tags">
                         <span class="essay-tag tag-identity">Identity</span>
-                        <span class="essay-tag tag-growth">Growth</span>
+                        <span class="essay-tag tag-growth">Focus</span>
                     </div>
                 </div>
             </div>
-            <a href="essay3.html" class="essay-card-thumb" tabindex="-1" aria-hidden="true">
-                <img src="../assets/images/essay3-thumb.jpg" alt="" loading="lazy">
+            <a href="essays/trivial-priorities.html" class="essay-card-thumb essay-card-thumb--priorities" tabindex="-1" aria-hidden="true">
+                <span>Focus</span>
             </a>
         </article>
-
-        <article class="essay-card" data-tags="present">
-            <div class="essay-card-body">
-                <div class="essay-meta-top">
-                    <div class="author-chip">
-                        <div class="author-avatar" aria-hidden="true">PK</div>
-                        <span class="author-name">Parth Khadke</span>
-                    </div>
-                    <time class="essay-date" datetime="2025-02-14">Feb 14</time>
-                </div>
-                <a href="essay4.html" class="essay-link">
-                    <h2 class="essay-title">What Slow Mornings Taught Me About Velocity</h2>
-                    <p class="essay-excerpt">The counter-intuitive case for protecting your first hour — and why urgency is almost always manufactured.</p>
-                </a>
-                <div class="essay-meta-bottom">
-                    <span class="essay-byline">Parth Khadke · 4 min read</span>
-                    <div class="essay-tags">
-                        <span class="essay-tag tag-present">Present Moment</span>
-                    </div>
-                </div>
-            </div>
-            <a href="essay4.html" class="essay-card-thumb" tabindex="-1" aria-hidden="true">
-                <img src="../assets/images/essay4-thumb.jpg" alt="" loading="lazy">
-            </a>
-        </article>
-
     </main>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
         <p class="footer-copy">&copy; 2026 Parth Khadke</p>
     </footer>
 
     <script>
-        // Filter logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.essay-card');
 
-        filterBtns.forEach(btn => {
+        filterBtns.forEach((btn) => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                filterBtns.forEach((b) => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const filter = btn.dataset.filter;
-                cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.tags.includes(filter)) {
-                        card.style.display = '';
-                        requestAnimationFrame(() => card.classList.add('visible'));
-                    } else {
-                        card.classList.remove('visible');
-                        card.style.display = 'none';
-                    }
+                cards.forEach((card) => {
+                    card.style.display = filter === 'all' || card.dataset.tags.includes(filter) ? '' : 'none';
                 });
             });
         });

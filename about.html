@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Parth Khadke.">
+    <title>About | Parth Khadke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root { --bg:#0a0a0a; --surface:#111; --border:#2a2a2a; --text-pri:#f0ede4; --text-mut:#8a8278; --violet:#d47fd4; --font-display:"Cormorant Garamond",Georgia,serif; --font-body:"Source Serif 4",Georgia,serif; --font-ui:"Inter",system-ui,sans-serif; --font-mono:"JetBrains Mono",monospace; --max-w:860px; --pad:clamp(20px,6vw,56px); }
+        *{box-sizing:border-box;margin:0;padding:0} html,body{background:var(--bg);color:var(--text-pri);min-height:100vh} body{font-family:var(--font-ui);line-height:1.7}
+        nav{position:sticky;top:0;height:58px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(10,10,10,.88);backdrop-filter:blur(12px)}
+        .nav-logo{font-family:var(--font-mono);font-size:13px;color:var(--text-mut);text-decoration:none}.nav-links{display:flex;gap:clamp(14px,4vw,30px);list-style:none}.nav-links a{color:var(--text-mut);font-size:13px;text-decoration:none}.nav-links a:hover,.nav-links a.active,.nav-logo:hover{color:var(--violet)}
+        main{max-width:var(--max-w);margin:0 auto;padding:76px var(--pad)}
+        .hero{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:center;margin-bottom:54px;padding-bottom:44px;border-bottom:1px solid var(--border)}
+        .portrait{width:220px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid var(--border);background:var(--surface)}.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+        .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:12px}.title{font-family:var(--font-display);font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.03;margin-bottom:16px}.lede{color:var(--text-mut);font-family:var(--font-body);font-size:1.2rem;line-height:1.75}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.section{padding:26px;border:1px solid var(--border);border-radius:6px;background:var(--surface)}h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:12px}p,li{color:var(--text-mut)}ul{padding-left:18px}.section--wide{grid-column:1/-1}.contact{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}.contact a{color:var(--text-pri);border:1px solid var(--border);border-radius:4px;padding:8px 12px;text-decoration:none;font-family:var(--font-mono);font-size:12px}.contact a:hover{border-color:var(--violet);color:var(--violet)}
+        footer{max-width:var(--max-w);margin:0 auto;padding:28px var(--pad);border-top:1px solid var(--border);color:var(--text-mut);font-family:var(--font-mono);font-size:12px}
+        @media(max-width:720px){.hero,.grid{grid-template-columns:1fr}.portrait{width:170px}}
+    </style>
+</head>
+<body>
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="nav-logo">pk.me</a>
+        <ul class="nav-links">
+            <li><a href="projects.html">Work</a></li>
+            <li><a href="essays.html">Writing</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="portrait"><img src="profile.jpeg" alt="Parth Khadke portrait"></div>
+            <div>
+                <p class="eyebrow">About</p>
+                <h1 class="title">Parth Khadke</h1>
+                <p class="lede">Software developer, builder, and writer. This is trial copy for the demo: replace it later with the exact bio, current role, location, and the story you want the site to tell.</p>
+            </div>
+        </section>
+
+        <div class="grid">
+            <section class="section">
+                <h2>What I do</h2>
+                <p>I build practical software, prototype product ideas, and document what I learn while doing it. Current interests include AI tools, learning systems, and clean personal publishing.</p>
+            </section>
+            <section class="section">
+                <h2>Now</h2>
+                <ul>
+                    <li>Preparing portfolio projects for review.</li>
+                    <li>Writing short essays about attention and building.</li>
+                    <li>Reading across software, philosophy, and self-improvement.</li>
+                </ul>
+            </section>
+            <section class="section section--wide">
+                <h2>Short version</h2>
+                <p>I like turning messy thoughts into working systems. This site is the home base: projects when I ship, essays when I think, and a library for the books shaping my taste.</p>
+                <div class="contact">
+                    <a href="mailto:hello@parthkhadke.me">Email</a>
+                    <a href="https://github.com/parth-khadke" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/parth-khadke-21ab2625a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 Parth Khadke</footer>
+</body>
+</html>

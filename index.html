@@ -56,7 +56,7 @@
               ☰
             </button>
 
-            <a href="/" class="nav__logo">parthkhadke.me</a>
+            <a href="index.html" class="nav__logo">parthkhadke.me</a>
           </div>
         </nav>
       </header>
@@ -67,11 +67,11 @@
 
       <div id="nav-panel" class="nav-panel">
         <nav class="nav-panel__menu">
-          <a href="/" class="nav-panel__link">Home</a>
-          <a href="/projects/" class="nav-panel__link">Work</a>
-          <a href="/essays/" class="nav-panel__link">Writing</a>
-          <a href="/library/" class="nav-panel__link">Library</a>
-          <a href="#contact" class="nav-panel__link">About</a>
+          <a href="index.html" class="nav-panel__link">Home</a>
+          <a href="projects.html" class="nav-panel__link">Work</a>
+          <a href="essays.html" class="nav-panel__link">Writing</a>
+          <a href="library.html" class="nav-panel__link">Library</a>
+          <a href="about.html" class="nav-panel__link">About</a>
 
           <div class="nav-panel__divider"></div>
 
@@ -122,12 +122,13 @@
 
       <!-- PROJECTS -->
       <section class="stream-section" aria-label="Projects">
-        <a href="projects.html"></a><h2 class="stream-section__title stream-section__title--emerald">
+        <h2 class="stream-section__title stream-section__title--emerald">
           Projects
-        </h2></a>
+        </h2>
 
         <ul class="project-list" role="list">
           <li class="project-card">
+            <a href="projects/skillforge.html" class="project-card__link">
             <h3 class="project-card__name">SkillForge</h3>
 
             <div class="project-card__content">
@@ -144,32 +145,35 @@
                 <p class="project-card__stack">Python · FastAPI · OpenAI</p>
               </div>
             </div>
+            </a>
           </li>
 
           <li class="project-card">
+            <a href="projects/alphabetninja.html" class="project-card__link">
             <h3 class="project-card__name">AlphabetNinja</h3>
 
             <div class="project-card__content">
               <div class="project-card__logo">
                 <img
-                  src="images/AlphabetNinja_logo.png"
+                  src="skillforge_logo.png"
                   alt="AlphabetNinja logo"
                 />
               </div>
 
               <div class="project-card__info">
                 <p class="project-card__desc">
-                  AI-powered learning roadmap generator for self-taught
-                  developers.
+                  A Java learning game that helps beginners practice letters,
+                  recognition, and quick recall through playful repetition.
                 </p>
 
                 <p class="project-card__stack">Java</p>
               </div>
             </div>
+            </a>
           </li>
         </ul>
         <div class="more-link-wrapper">
-          <a href="/projects.html" class="more-link">More projects &rarr;</a>
+          <a href="projects.html" class="more-link">More projects &rarr;</a>
         </div>
       </section>
 
@@ -182,6 +186,7 @@
         </h2>
         <ul class="essay-list" role="list">
           <li class="essay-card">
+            <a href="essays/writingtowrite.html" class="essay-card__link">
             <div class="essay-card__body">
               <h3 class="essay-card__title">Writing To Write</h3>
               <p class="essay-card__excerpt">
@@ -189,26 +194,19 @@
               </p>
             </div>
             <div class="essay-card__image" aria-hidden="true"></div>
+            </a>
           </li>
           <li class="essay-card">
+            <a href="essays/trivial-priorities.html" class="essay-card__link">
             <div class="essay-card__body">
               <h3 class="essay-card__title">Trivial Priorities</h3>
               <p class="essay-card__excerpt">
-                Ante ipsum primis in faucibus orci luctus et ultrices posuere
-                cubilia curae.
+                A short reflection on how small distractions quietly become
+                the architecture of a day.
               </p>
             </div>
             <div class="essay-card__image" aria-hidden="true"></div>
-          </li>
-          <li class="essay-card">
-            <div class="essay-card__body">
-              <h3 class="essay-card__title">Title</h3>
-              <p class="essay-card__excerpt">
-                Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh.
-              </p>
-            </div>
-            <div class="essay-card__image" aria-hidden="true"></div>
+            </a>
           </li>
         </ul>
         <div class="more-link-wrapper">
@@ -224,51 +222,50 @@
           My Bookshelf
         </h2>
         <ul class="bookshelf-grid" role="list">
-          <!-- 9 placeholder books -->
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/alchemist.jpg" alt="The Alchemist book cover" />
+            <p class="book-card__title">The Alchemist</p>
+            <p class="book-card__author">Paulo Coelho</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/almanack.jpg" alt="The Almanack of Naval Ravikant book cover" />
+            <p class="book-card__title">The Almanack of Naval Ravikant</p>
+            <p class="book-card__author">Eric Jorgenson</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/power_of_now.jpg" alt="The Power of Now book cover" />
+            <p class="book-card__title">The Power of Now</p>
+            <p class="book-card__author">Eckhart Tolle</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/psycho_cybernetics.jpg" alt="Psycho-Cybernetics book cover" />
+            <p class="book-card__title">Psycho-Cybernetics</p>
+            <p class="book-card__author">Maxwell Maltz</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/richest_man_in_babylon.jpg" alt="The Richest Man in Babylon book cover" />
+            <p class="book-card__title">The Richest Man in Babylon</p>
+            <p class="book-card__author">George S. Clason</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/millionaire_fastlane.webp" alt="The Millionaire Fastlane book cover" />
+            <p class="book-card__title">The Millionaire Fastlane</p>
+            <p class="book-card__author">M. J. DeMarco</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/become_what_you_are.jpg" alt="Become What You Are book cover" />
+            <p class="book-card__title">Become What You Are</p>
+            <p class="book-card__author">Alan Watts</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/aghora_vol1.jpg" alt="Aghora Volume 1 book cover" />
+            <p class="book-card__title">Aghora Vol. 1</p>
+            <p class="book-card__author">Robert E. Svoboda</p>
           </li>
           <li class="book-card">
-            <div class="book-card__cover" aria-hidden="true"></div>
-            <p class="book-card__title">Book Title</p>
-            <p class="book-card__author">Author</p>
+            <img class="book-card__cover" src="assets/LOTR_VOL1.jpg" alt="The Lord of the Rings Volume 1 book cover" />
+            <p class="book-card__title">The Lord of the Rings Vol. 1</p>
+            <p class="book-card__author">J. R. R. Tolkien</p>
           </li>
         </ul>
       </section>
@@ -316,7 +313,7 @@
             class="contact-form"
             action="#"
             method="POST"
-            onsubmit="return false;"
+            novalidate
           >
             <label for="cf-name" class="sr-only">Name</label>
             <input
@@ -325,7 +322,11 @@
               name="name"
               placeholder="Name"
               autocomplete="name"
+              minlength="2"
+              maxlength="80"
+              required
             />
+            <p class="form-error" id="cf-name-error" aria-live="polite"></p>
             <label for="cf-email" class="sr-only">Email</label>
             <input
               type="email"
@@ -333,15 +334,23 @@
               name="email"
               placeholder="Email"
               autocomplete="email"
+              maxlength="120"
+              required
             />
+            <p class="form-error" id="cf-email-error" aria-live="polite"></p>
             <label for="cf-message" class="sr-only">Message</label>
             <textarea
               id="cf-message"
               name="message"
               rows="5"
               placeholder="Your message"
+              minlength="12"
+              maxlength="1000"
+              required
             ></textarea>
+            <p class="form-error" id="cf-message-error" aria-live="polite"></p>
             <button type="submit">Send</button>
+            <p class="form-status" id="cf-status" aria-live="polite"></p>
           </form>
         </div>
       </section>

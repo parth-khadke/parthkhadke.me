@@ -1,279 +1,358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Parth Khadke personal website coming soon.">
-    <title>Parth Khadke | Coming Soon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        :root {
-            --background: #050505;
-            --white: #ffffff;
-            --soft: rgba(255, 255, 255, 0.74);
-            --muted: rgba(255, 255, 255, 0.48);
-            --quiet: rgba(255, 255, 255, 0.28);
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Parth Khadke — Software Developer, Builder, Writer."
+    />
+    <title>Parth Khadke</title>
 
-        * {
-            box-sizing: border-box;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-        html {
-            min-height: 100%;
-            background: var(--background);
-        }
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-        body {
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            font-family: "Inter", Arial, sans-serif;
-            color: var(--white);
-            background: var(--background);
-        }
-
-        .background {
-            position: fixed;
-            inset: -18px;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.42;
-            filter: blur(3px);
-            transform: scale(1.02);
-        }
-
-        .background::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.08), transparent 34%),
-                linear-gradient(180deg, rgba(5, 5, 5, 0.58), rgba(5, 5, 5, 0.88));
-        }
-
-        .page {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 48px 24px 132px;
-            isolation: isolate;
-        }
-
-        main {
-            width: min(100%, 1080px);
-            text-align: center;
-            animation: enter 900ms ease-out both;
-        }
-
-        h1,
-        p {
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: clamp(2.25rem, 6.85vw, 6.15rem);
-            line-height: 0.94;
-            font-weight: 800;
-            letter-spacing: clamp(0.06em, 0.62vw, 0.14em);
-            text-indent: clamp(0.06em, 0.62vw, 0.14em);
-            color: var(--white);
-            background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 45%, #8f8f8f 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            white-space: nowrap;
-        }
-
-        .status {
-            margin-top: 0;
-            font-size: clamp(0.82rem, 1.4vw, 1.08rem);
-            line-height: 1.7;
-            font-weight: 700;
-            letter-spacing: 0.42em;
-            text-indent: 0.42em;
-            color: var(--soft);
-        }
-
-        .intro {
-            width: min(100%, 560px);
-            margin: clamp(22px, 3.2vw, 34px) auto 0;
-            font-size: clamp(0.8rem, 1.15vw, 0.97rem);
-            line-height: 1.9;
-            font-weight: 600;
-            letter-spacing: 0.26em;
-            text-indent: 0.26em;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .divider {
-            width: min(100%, 460px);
-            height: 1px;
-            border: 0;
-            margin: clamp(26px, 4vw, 42px) auto;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
-        }
-
-        footer {
-            position: fixed;
-            left: 50%;
-            bottom: 34px;
-            z-index: 2;
-            width: min(100% - 48px, 420px);
-            transform: translateX(-50%);
-            display: grid;
-            justify-items: center;
-            gap: 18px;
-        }
-
-        .socials {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .socials a {
-            width: 42px;
-            height: 42px;
-            border: 1px solid var(--quiet);
-            border-radius: 50%;
-            display: inline-grid;
-            place-items: center;
-            color: var(--soft);
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.025);
-            transition: color 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
-        }
-
-        .socials a:hover,
-        .socials a:focus-visible {
-            color: var(--white);
-            border-color: rgba(255, 255, 255, 0.62);
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-        }
-
-        .socials a:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.82);
-            outline-offset: 4px;
-        }
-
-        .socials i {
-            font-size: 15px;
-        }
-
-        .copyright {
-            font-size: 0.72rem;
-            line-height: 1;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        @keyframes enter {
-            from {
-                opacity: 0;
-                transform: translateY(14px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 680px) {
-            body {
-                overflow: auto;
-            }
-
-            .page {
-                padding: 40px 28px 148px;
-            }
-
-            h1 {
-                font-size: clamp(1.55rem, 7.35vw, 2.85rem);
-                letter-spacing: 0.035em;
-                text-indent: 0.035em;
-            }
-
-            .status {
-                font-size: clamp(0.64rem, 2.2vw, 0.82rem);
-                letter-spacing: 0.18em;
-                text-indent: 0.18em;
-            }
-
-            .intro {
-                font-size: clamp(0.68rem, 2.4vw, 0.86rem);
-                letter-spacing: 0.12em;
-                text-indent: 0.12em;
-            }
-
-            .divider {
-                width: min(100%, 320px);
-            }
-
-            footer {
-                bottom: 26px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 1ms !important;
-                scroll-behavior: auto !important;
-                transition-duration: 1ms !important;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="background" aria-hidden="true">
-        <img src="background.svg" alt="">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════
+         PRE-LOADER OVERLAY
+         Removed from DOM after animation completes.
+         sessionStorage prevents replay on return visits.
+    ═══════════════════════════════════════════ -->
+    <div id="preloader" aria-hidden="true">
+      <div class="preloader__inner">
+        <span class="preloader__name" id="preloaderName">parthkhadke.me</span>
+      </div>
     </div>
 
-    <div class="page">
-        <main aria-label="Coming soon announcement">
-            <h1>parthkhadke.me</h1>
-            <p class="intro">Software Developer • Builder • Writer</p>
-            <hr class="divider">
-            <p class="status">Personal Website Under Progress</p>
-            <hr class="divider">
-        </main>
-    </div>
+    <!-- ═══════════════════════════════════════════
+         HOMEPAGE CONTENT (The Stream)
+         Invisible during preloader, revealed on fade-out.
+    ═══════════════════════════════════════════ -->
+    <div id="site-content" class="site-content">
+      <!-- NAV -->
+      <header class="site-header">
+        <nav class="nav" aria-label="Primary navigation">
+          <div class="nav__left">
+            <button
+              id="menu-toggle"
+              class="menu-toggle"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+            >
+              ☰
+            </button>
 
-    <footer>
-        <nav class="socials" aria-label="Social links">
-            <a href="https://github.com/parth-khadke" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a href="https://x.com/Parth_Khadke_" target="_blank" rel="noopener noreferrer" aria-label="X">
-                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/parth-khadke-21ab2625a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="mailto:hello@parthkhadke.me" aria-label="Email">
-                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            </a>
+            <a href="/" class="nav__logo">parthkhadke.me</a>
+          </div>
         </nav>
-        <p class="copyright">&copy; 2026 Parth Khadke</p>
-    </footer>
-</body>
+      </header>
+
+      <!-- Floating Navigation Panel -->
+
+      <div id="nav-overlay" class="nav-overlay"></div>
+
+      <div id="nav-panel" class="nav-panel">
+        <nav class="nav-panel__menu">
+          <a href="/" class="nav-panel__link">Home</a>
+          <a href="/projects/" class="nav-panel__link">Work</a>
+          <a href="/essays/" class="nav-panel__link">Writing</a>
+          <a href="/library/" class="nav-panel__link">Library</a>
+          <a href="#contact" class="nav-panel__link">About</a>
+
+          <div class="nav-panel__divider"></div>
+
+          <a
+            href="https://github.com/parth-khadke"
+            class="nav-panel__link"
+            target="_blank"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/parth-khadke-21ab2625a/"
+            class="nav-panel__link"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+
+          <a href="mailto:hello@parthkhadke.me" class="nav-panel__link">
+            Email
+          </a>
+        </nav>
+      </div>
+
+      <!-- HERO -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero__inner">
+          <div class="hero__avatar" aria-hidden="true">
+            <!-- Placeholder avatar circle -->
+            <img id="profile" src="profile.jpeg" alt="profile photo" />
+          </div>
+          <div class="hero__text">
+            <p class="hero__greeting">Namaste, I am</p>
+            <h1 class="hero__name">Parth Khadke</h1>
+            <p class="hero__tagline">
+              Welcome to my personal corner of the internet
+            </p>
+            <p class="hero__bio">
+              I am a Software developer, builder, and writer. I build things,
+              think in public, and read voraciously.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- PROJECTS -->
+      <section class="stream-section" aria-label="Projects">
+        <h2 class="stream-section__title stream-section__title--emerald">
+          Projects
+        </h2>
+
+        <ul class="project-list" role="list">
+          <li class="project-card">
+            <h3 class="project-card__name">SkillForge</h3>
+
+            <div class="project-card__content">
+              <div class="project-card__logo">
+                <img src="skillforge_logo.png" alt="SkillForge logo" />
+              </div>
+
+              <div class="project-card__info">
+                <p class="project-card__desc">
+                  AI-powered learning roadmap generator for self-taught
+                  developers.
+                </p>
+
+                <p class="project-card__stack">Python · FastAPI · OpenAI</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="project-card">
+            <h3 class="project-card__name">AlphabetNinja</h3>
+
+            <div class="project-card__content">
+              <div class="project-card__logo">
+                <img
+                  src="images/AlphabetNinja_logo.png"
+                  alt="AlphabetNinja logo"
+                />
+              </div>
+
+              <div class="project-card__info">
+                <p class="project-card__desc">
+                  AI-powered learning roadmap generator for self-taught
+                  developers.
+                </p>
+
+                <p class="project-card__stack">Java</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="more-link-wrapper">
+          <a href="/projects/" class="more-link">More projects &rarr;</a>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- ESSAYS -->
+      <section class="stream-section" aria-label="Essays">
+        <h2 class="stream-section__title stream-section__title--indigo">
+          Essays
+        </h2>
+        <ul class="essay-list" role="list">
+          <li class="essay-card">
+            <div class="essay-card__body">
+              <h3 class="essay-card__title">Writing To Write</h3>
+              <p class="essay-card__excerpt">
+                The frustration of losing profound thoughts, and the discovery that journaling is a way to catch them...
+              </p>
+            </div>
+            <div class="essay-card__image" aria-hidden="true"></div>
+          </li>
+          <li class="essay-card">
+            <div class="essay-card__body">
+              <h3 class="essay-card__title">Trivial Priorities</h3>
+              <p class="essay-card__excerpt">
+                Ante ipsum primis in faucibus orci luctus et ultrices posuere
+                cubilia curae.
+              </p>
+            </div>
+            <div class="essay-card__image" aria-hidden="true"></div>
+          </li>
+          <li class="essay-card">
+            <div class="essay-card__body">
+              <h3 class="essay-card__title">Title</h3>
+              <p class="essay-card__excerpt">
+                Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh.
+              </p>
+            </div>
+            <div class="essay-card__image" aria-hidden="true"></div>
+          </li>
+        </ul>
+        <div class="more-link-wrapper">
+          <a href="/essays/" class="more-link">More essays &rarr;</a>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- BOOKSHELF -->
+      <section class="stream-section" aria-label="My Bookshelf">
+        <h2 class="stream-section__title stream-section__title--amber">
+          My Bookshelf
+        </h2>
+        <ul class="bookshelf-grid" role="list">
+          <!-- 9 placeholder books -->
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+          <li class="book-card">
+            <div class="book-card__cover" aria-hidden="true"></div>
+            <p class="book-card__title">Book Title</p>
+            <p class="book-card__author">Author</p>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- CONTACT -->
+      <section
+        class="stream-section contact-section"
+        id="contact"
+        aria-label="Get In Touch"
+      >
+        <h2 class="stream-section__title">Get In Touch</h2>
+        <div class="contact-grid">
+          <div class="contact-links">
+            <a href="mailto:hello@parthkhadke.me" class="contact-link"
+              ><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              hello@parthkhadke.me</a
+            >
+            <a
+              href="https://www.linkedin.com/in/parth-khadke-21ab2625a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+              LinkedIn</a
+            >
+            <a
+              href="https://github.com/parth-khadke"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              ><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a
+            >
+            <a
+              href="https://x.com/Parth_Khadke_"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              ><i class="fa-brands fa-x-twitter" aria-hidden="true"></i> X /
+              Twitter</a
+            >
+          </div>
+          <form
+            class="contact-form"
+            action="#"
+            method="POST"
+            onsubmit="return false;"
+          >
+            <label for="cf-name" class="sr-only">Name</label>
+            <input
+              type="text"
+              id="cf-name"
+              name="name"
+              placeholder="Name"
+              autocomplete="name"
+            />
+            <label for="cf-email" class="sr-only">Email</label>
+            <input
+              type="email"
+              id="cf-email"
+              name="email"
+              placeholder="Email"
+              autocomplete="email"
+            />
+            <label for="cf-message" class="sr-only">Message</label>
+            <textarea
+              id="cf-message"
+              name="message"
+              rows="5"
+              placeholder="Your message"
+            ></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <p class="site-footer__copy">&copy; 2026 Parth Khadke</p>
+      </footer>
+    </div>
+    <!-- /site-content -->
+
+    <script src="js/main.js"></script>
+  </body>
 </html>

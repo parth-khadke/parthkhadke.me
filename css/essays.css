@@ -1,0 +1,629 @@
+/* ============================================================
+   OBSIDIAN MANUSCRIPT — Essay CSS
+   Covers: essays/index.html (listing) + essays/essay1.html (individual)
+   Dark mode default · Light mode via [data-theme="light"]
+   ============================================================ */
+
+/* ── DESIGN TOKENS ── */
+:root {
+    /* Ground */
+    --bg:            #0A0A0A;
+    --bg-surface:    #111111;
+    --bg-elevated:   #181818;
+    --border:        rgba(255, 255, 255, 0.08);
+    --border-hover:  rgba(255, 255, 255, 0.16);
+
+    /* Text */
+    --text-primary:  #F0EDE8;
+    --text-secondary: rgba(240, 237, 232, 0.65);
+    --text-muted:    rgba(240, 237, 232, 0.38);
+
+    /* Accents — Writing domain is Indigo */
+    --accent-indigo:  #6366F1;
+    --accent-emerald: #10B981;
+    --accent-amber:   #F59E0B;
+    --accent-violet:  #8B5CF6;
+
+    /* Tag chip colours */
+    --tag-present-bg:   rgba(99, 102, 241, 0.12);
+    --tag-present-text: #818CF8;
+    --tag-identity-bg:  rgba(139, 92, 246, 0.12);
+    --tag-identity-text: #A78BFA;
+    --tag-growth-bg:    rgba(16, 185, 129, 0.12);
+    --tag-growth-text:  #34D399;
+    --tag-language-bg:  rgba(245, 158, 11, 0.12);
+    --tag-language-text: #FCD34D;
+
+    /* Avatar */
+    --avatar-bg:  rgba(99, 102, 241, 0.18);
+    --avatar-text: #818CF8;
+
+    /* Typography */
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-ui:      'Inter', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+    /* Layout */
+    --nav-height: 60px;
+    --essay-width: 680px;
+    --page-pad: clamp(20px, 5vw, 48px);
+
+    /* Motion */
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 220ms;
+}
+
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] {
+    --bg:            #FAF9F6;
+    --bg-surface:    #FFFFFF;
+    --bg-elevated:   #F2F0EB;
+    --border:        rgba(0, 0, 0, 0.08);
+    --border-hover:  rgba(0, 0, 0, 0.18);
+
+    --text-primary:  #1A1714;
+    --text-secondary: rgba(26, 23, 20, 0.65);
+    --text-muted:    rgba(26, 23, 20, 0.40);
+
+    --tag-present-bg:    rgba(99, 102, 241, 0.10);
+    --tag-present-text:  #4F46E5;
+    --tag-identity-bg:   rgba(139, 92, 246, 0.10);
+    --tag-identity-text: #7C3AED;
+    --tag-growth-bg:     rgba(16, 185, 129, 0.10);
+    --tag-growth-text:   #059669;
+    --tag-language-bg:   rgba(245, 158, 11, 0.10);
+    --tag-language-text: #B45309;
+
+    --avatar-bg:   rgba(99, 102, 241, 0.10);
+    --avatar-text: #4F46E5;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+html {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    transition: background 300ms var(--ease), color 300ms var(--ease);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    transition: background 300ms var(--ease);
+}
+
+/* ── NAVIGATION ── */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    padding: 0 var(--page-pad);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 300ms var(--ease), border-color 300ms var(--ease);
+}
+
+.nav-logo {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-right: auto;
+    transition: color var(--dur) var(--ease);
+}
+.nav-logo:hover { color: var(--accent-indigo); }
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease);
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--text-primary); }
+.nav-links a.active {
+    color: var(--accent-indigo);
+}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    margin-left: 8px;
+    transition:
+        border-color var(--dur) var(--ease),
+        background var(--dur) var(--ease),
+        color var(--dur) var(--ease),
+        transform var(--dur) var(--ease);
+}
+.theme-toggle:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    transform: rotate(12deg);
+}
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-indigo);
+    outline-offset: 3px;
+}
+
+/* Show/hide the right icon per theme */
+[data-theme="dark"]  .theme-icon--dark  { display: none; }
+[data-theme="dark"]  .theme-icon--light { display: block; }
+[data-theme="light"] .theme-icon--dark  { display: block; }
+[data-theme="light"] .theme-icon--light { display: none; }
+
+/* ── PAGE HEADER (listing page) ── */
+.page-header {
+    max-width: 760px;
+    margin: clamp(40px, 8vw, 80px) auto 0;
+    padding: 0 var(--page-pad);
+}
+
+.page-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-indigo);
+    margin-bottom: 12px;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 520px;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 var(--page-pad);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-btn {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+        border-color var(--dur) var(--ease),
+        color var(--dur) var(--ease),
+        background var(--dur) var(--ease);
+}
+.filter-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+.filter-btn.active {
+    border-color: var(--accent-indigo);
+    color: var(--accent-indigo);
+    background: rgba(99, 102, 241, 0.08);
+}
+
+/* ── ESSAY LIST ── */
+.essay-list {
+    max-width: 760px;
+    margin: 32px auto 80px;
+    padding: 0 var(--page-pad);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ── ESSAY CARD (Substack-style) ── */
+.essay-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    transition: border-color var(--dur) var(--ease);
+}
+.essay-card:first-child { border-top: 1px solid var(--border); }
+
+.essay-card-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.essay-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.author-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.author-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--avatar-bg);
+    color: var(--avatar-text);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    display: grid;
+    place-items: center;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.author-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.essay-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.essay-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.essay-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-primary);
+    transition: color var(--dur) var(--ease);
+}
+.essay-link:hover .essay-title { color: var(--accent-indigo); }
+
+.essay-excerpt {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.essay-meta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.essay-byline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.essay-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.essay-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+}
+
+.tag-present  { background: var(--tag-present-bg);  color: var(--tag-present-text);  }
+.tag-identity { background: var(--tag-identity-bg); color: var(--tag-identity-text); }
+.tag-growth   { background: var(--tag-growth-bg);   color: var(--tag-growth-text);   }
+.tag-language { background: var(--tag-language-bg); color: var(--tag-language-text); }
+
+/* ── THUMBNAIL ── */
+.essay-card-thumb {
+    flex-shrink: 0;
+    width: 120px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    display: block;
+    background: var(--bg-elevated);
+    transition: border-color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.essay-card-thumb:hover { opacity: 0.85; }
+.essay-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── INDIVIDUAL ESSAY PAGE ── */
+.essay-page {
+    max-width: var(--essay-width);
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 64px) var(--page-pad);
+}
+
+/* Essay Header */
+.essay-header {
+    margin-bottom: 32px;
+}
+
+.essay-tags-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.essay-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+}
+
+.essay-deck {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-style: italic;
+    font-family: var(--font-display);
+}
+
+.essay-author-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.essay-author-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.essay-author-name {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.essay-author-sep { color: var(--text-muted); }
+
+.essay-read-time {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Hero image */
+.essay-hero-figure {
+    margin: 0 0 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+}
+
+.essay-hero-img {
+    width: 100%;
+    height: clamp(200px, 40vw, 380px);
+    object-fit: cover;
+    display: block;
+}
+
+/* Essay Body — Typography */
+.essay-body {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    line-height: 1.85;
+    color: var(--text-primary);
+    transition: color 300ms var(--ease);
+}
+
+.essay-body p {
+    margin-bottom: 1.6em;
+}
+
+/* Drop cap on first paragraph */
+.essay-dropcap::first-letter {
+    font-family: var(--font-display);
+    font-size: 4.2em;
+    font-weight: 600;
+    line-height: 0.78;
+    float: left;
+    margin-right: 0.07em;
+    margin-top: 0.1em;
+    color: var(--accent-indigo);
+}
+
+.essay-body h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 2.4em 0 0.8em;
+    letter-spacing: -0.01em;
+}
+
+.essay-body em {
+    font-style: italic;
+    color: inherit;
+}
+
+.essay-body strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Blockquote */
+.essay-blockquote {
+    margin: 2em 0;
+    padding: 0 0 0 24px;
+    border-left: 2px solid var(--accent-indigo);
+}
+
+.essay-blockquote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* ── ESSAY FOOTER ── */
+.essay-footer {
+    margin-top: 60px;
+}
+
+.essay-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-indigo), transparent);
+    margin-bottom: 32px;
+    opacity: 0.4;
+}
+
+.essay-nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.essay-back,
+.essay-next {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease);
+}
+.essay-back:hover,
+.essay-next:hover { color: var(--accent-indigo); }
+
+/* ── SITE FOOTER ── */
+.site-footer {
+    padding: 32px var(--page-pad);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    transition: border-color 300ms var(--ease);
+}
+
+.footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+    }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+    .essay-card {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    .essay-card-thumb {
+        width: 100%;
+        height: 160px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .essay-author-row {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links a { display: none; }
+    .nav-links a.active { display: block; }
+}

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillForge — AI-powered learning roadmap generator. A case study by Parth Khadke.">
+    <title>SkillForge — Parth Khadke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <style>
+        /* ─── TOKENS ─────────────────────────────────────────────────── */
+        :root {
+            --bg:           #0A0A0A;
+            --surface:      #111111;
+            --raised:       #1C1C1C;
+            --border:       #2A2A2A;
+            --text-pri:     #F0EDE4;
+            --text-mut:     #8A8278;
+            --emerald:      #2ECC8F;
+            --emerald-bg:   #0D2B1F;
+
+            --font-display: "Cormorant Garamond", Georgia, serif;
+            --font-body:    "Source Serif 4", Georgia, serif;
+            --font-ui:      "Inter", system-ui, sans-serif;
+            --font-mono:    "JetBrains Mono", monospace;
+
+            --max-w:        700px;
+            --read-w:       640px;
+            --margin:       40px;
+            --transition:   150ms ease;
+        }
+
+        /* ─── RESET ──────────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { background: var(--bg); color: var(--text-pri); }
+
+        body {
+            font-family: var(--font-ui);
+            font-size: 14px;
+            line-height: 1.6;
+            background: var(--bg);
+            min-height: 100vh;
+        }
+
+        /* ─── NAV ────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--margin);
+            border-bottom: 0.5px solid var(--border);
+            background: rgba(10, 10, 10, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-mut);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color var(--transition);
+        }
+        .nav-logo:hover { color: var(--text-pri); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-mut);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color var(--transition);
+        }
+        .nav-links a:hover { color: var(--text-pri); }
+        .nav-links a.active { color: var(--emerald); }
+
+        /* ─── PAGE SHELL ─────────────────────────────────────────────── */
+        .page {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 112px var(--margin) 96px;
+        }
+
+        /* ─── BREADCRUMB ─────────────────────────────────────────────── */
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-mut);
+            margin-bottom: 48px;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-mut);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .breadcrumb a:hover { color: var(--emerald); }
+        .breadcrumb .sep { opacity: 0.4; }
+
+        /* ─── PROJECT HEADER ─────────────────────────────────────────── */
+        .project-header {
+            margin-bottom: 56px;
+            padding-bottom: 48px;
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        .project-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--emerald);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 52px;
+            font-weight: 600;
+            color: var(--text-pri);
+            line-height: 1.02;
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+        }
+
+        .project-tagline {
+            font-size: 17px;
+            color: var(--text-mut);
+            line-height: 1.8;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        /* ─── META STRIP ─────────────────────────────────────────────── */
+        .meta-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0;
+            border: 0.5px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .meta-item {
+            padding: 16px 20px;
+            border-right: 0.5px solid var(--border);
+        }
+        .meta-item:last-child { border-right: none; }
+
+        .meta-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-mut);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-pri);
+        }
+
+        .meta-value.emerald { color: var(--emerald); }
+
+        /* ─── PROJECT IMAGE / COVER ──────────────────────────────────── */
+        .project-cover {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--surface);
+            border: 0.5px solid var(--border);
+            border-radius: 6px;
+            margin: 48px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Placeholder aesthetic — replace with real <img> */
+        .project-cover::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(46, 204, 143, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 70%, rgba(46, 204, 143, 0.04) 0%, transparent 50%);
+        }
+
+        .cover-placeholder {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-mut);
+            letter-spacing: 0.08em;
+            z-index: 1;
+        }
+
+        /* ─── BODY CONTENT ───────────────────────────────────────────── */
+        .project-content {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-pri);
+            max-width: var(--read-w);
+        }
+
+        .project-content p {
+            margin-bottom: 24px;
+        }
+
+        .project-content p:last-child { margin-bottom: 0; }
+
+        /* Section headings within content */
+        .project-content h2 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-pri);
+            line-height: 1.2;
+            margin: 48px 0 20px;
+        }
+
+        .project-content h3 {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--emerald);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 40px 0 16px;
+        }
+
+        /* Blockquote — key insight */
+        .project-content blockquote {
+            margin: 40px 0;
+            padding: 24px 28px;
+            border-left: 2px solid var(--emerald);
+            background: var(--emerald-bg);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .project-content blockquote p {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-pri);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Inline code */
+        .project-content code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: var(--raised);
+            border: 0.5px solid var(--border);
+            border-radius: 3px;
+            padding: 2px 6px;
+            color: var(--emerald);
+        }
+
+        /* Divider */
+        .project-content hr {
+            border: none;
+            border-top: 0.5px solid var(--border);
+            margin: 48px 0;
+        }
+
+        /* Links */
+        .project-content a {
+            color: var(--emerald);
+            text-decoration: underline;
+            text-decoration-color: rgba(46, 204, 143, 0.35);
+            text-underline-offset: 3px;
+            transition: text-decoration-color var(--transition);
+        }
+        .project-content a:hover {
+            text-decoration-color: var(--emerald);
+        }
+
+        /* ─── TAKEAWAY BLOCK ─────────────────────────────────────────── */
+        .takeaway {
+            margin: 56px 0;
+            padding: 32px;
+            background: var(--surface);
+            border: 0.5px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .takeaway-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--emerald);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .takeaway-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .takeaway-list li {
+            font-family: var(--font-ui);
+            font-size: 14px;
+            color: var(--text-mut);
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .takeaway-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--emerald);
+        }
+
+        /* ─── LINK BAR ───────────────────────────────────────────────── */
+        .link-bar {
+            display: flex;
+            gap: 16px;
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 0.5px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+
+        .link-btn-primary {
+            background: var(--emerald-bg);
+            color: var(--emerald);
+            border: 0.5px solid rgba(46, 204, 143, 0.3);
+        }
+        .link-btn-primary:hover {
+            background: rgba(46, 204, 143, 0.15);
+            border-color: rgba(46, 204, 143, 0.6);
+        }
+
+        .link-btn-ghost {
+            background: transparent;
+            color: var(--text-mut);
+            border: 0.5px solid var(--border);
+        }
+        .link-btn-ghost:hover {
+            color: var(--text-pri);
+            border-color: rgba(240, 237, 228, 0.3);
+        }
+
+        /* ─── PROJECT NAV ────────────────────────────────────────────── */
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 0.5px solid var(--border);
+            gap: 24px;
+        }
+
+        .project-nav a {
+            font-size: 13px;
+            color: var(--text-mut);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .project-nav a:hover { color: var(--emerald); }
+
+        .project-nav .nav-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-mut);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+            opacity: 0.6;
+        }
+
+        /* ─── FOOTER ─────────────────────────────────────────────────── */
+        footer {
+            margin-top: 96px;
+            padding: 32px var(--margin);
+            border-top: 0.5px solid var(--border);
+            max-width: var(--max-w);
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--text-mut);
+            letter-spacing: 0.04em;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-mut);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color var(--transition);
+        }
+        .footer-link:hover { color: var(--emerald); }
+
+        /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            :root { --margin: 20px; }
+
+            nav { padding: 0 20px; }
+            .nav-links { gap: 20px; }
+
+            .page { padding-top: 96px; }
+
+            .project-title { font-size: 36px; }
+
+            .meta-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+            .meta-item:nth-child(2) { border-right: none; }
+            .meta-item:nth-child(3) { border-top: 0.5px solid var(--border); }
+            .meta-item:nth-child(4) { border-top: 0.5px solid var(--border); border-right: none; }
+
+            .project-content { font-size: 16px; }
+
+            .link-bar { flex-direction: column; }
+            .link-btn { justify-content: center; }
+
+            .project-nav { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: 1ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="../index.html" class="nav-logo">pk.me</a>
+        <ul class="nav-links">
+            <li><a href="../projects.html" class="active">Work</a></li>
+            <li><a href="../essays.html">Writing</a></li>
+            <li><a href="../library.html">Library</a></li>
+            <li><a href="../about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="page">
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../projects.html">Work</a>
+            <span class="sep">/</span>
+            <span>SkillForge</span>
+        </nav>
+
+        <!-- HEADER -->
+        <header class="project-header">
+            <p class="project-eyebrow">Case Study · Jun 2026</p>
+            <h1 class="project-title">SkillForge</h1>
+            <p class="project-tagline">An AI-powered learning roadmap generator that turns vague goals into structured paths. Built to scratch my own itch — and broke some assumptions along the way.</p>
+
+            <!-- META STRIP -->
+            <div class="meta-strip" role="list">
+                <div class="meta-item" role="listitem">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">8 weeks</div>
+                </div>
+                <div class="meta-item" role="listitem">
+                    <div class="meta-label">Stack</div>
+                    <div class="meta-value">Next.js · Claude API</div>
+                </div>
+                <div class="meta-item" role="listitem">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">Solo</div>
+                </div>
+                <div class="meta-item" role="listitem">
+                    <div class="meta-label">Status</div>
+                    <div class="meta-value emerald">Shipped</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- COVER IMAGE SLOT -->
+        <div class="project-cover" aria-label="Project screenshot placeholder">
+            <!-- Replace with: <img src="../assets/images/skillforge-cover.jpg" alt="SkillForge interface showing a generated roadmap for learning Rust"> -->
+            <span class="cover-placeholder">[ project screenshot ]</span>
+        </div>
+
+        <!-- BODY CONTENT -->
+        <article class="project-content">
+
+            <h3>The Problem</h3>
+            <p>
+                Every time I wanted to learn something new, I'd spend the first two days not learning — just trying to figure out what to learn, in what order, from what sources. The resources exist. The structure doesn't.
+            </p>
+            <p>
+                I wanted a tool that takes an honest goal ("I want to build a backend in Rust") and returns a sequenced, opinionated plan — not a list of resources, a <em>path</em>.
+            </p>
+
+            <h2>What I built</h2>
+            <p>
+                SkillForge takes a goal statement from the user, infers the implied skill level and constraints, then generates a phased learning roadmap using Claude as the reasoning engine. The output is structured: phases, milestones, recommended resources, and a clear "done" signal at the end of each step.
+            </p>
+
+            <blockquote>
+                <p>The hard insight wasn't technical. It was that people don't want roadmaps — they want permission to start somewhere specific.</p>
+            </blockquote>
+
+            <h3>Key Decisions</h3>
+            <p>
+                I debated whether to use a rigid prompt template or let the model reason more freely. Rigid templates produced more consistent output but felt robotic. Free reasoning produced better plans but occasionally hallucinated resource quality. The final approach uses a structured schema for the output shape, but leaves the reasoning fully unconstrained.
+            </p>
+            <p>
+                The other decision was to hide the AI entirely. No "generated by Claude" badge, no streaming animation. Just a result. I tested both versions — users trusted the clean version more, even though the underlying content was identical. That's worth sitting with.
+            </p>
+
+            <h3>What broke</h3>
+            <p>
+                My first version generated roadmaps that were technically correct but practically overwhelming. Twenty-step plans for beginners. I fixed this by adding a constraint: any roadmap for a "beginner" goal had to ship something by step 3, and the whole roadmap had to fit in a single browser viewport without scrolling. That forced better thinking.
+            </p>
+
+            <hr>
+
+            <h2>What I learned</h2>
+            <p>
+                Building this taught me more about LLM prompt architecture than any tutorial I've read. Specifically: <code>system</code> prompts do not substitute for structured output schemas. They inform tone, not format. I lost a week to this misunderstanding.
+            </p>
+            <p>
+                I also learned that "done" is a product decision, not a technical one. SkillForge works well enough that I shipped it. It has real users. There are twenty things I'd change. That's the correct state for a v1.
+            </p>
+
+            <!-- TAKEAWAYS -->
+            <div class="takeaway">
+                <p class="takeaway-label">Takeaways</p>
+                <ul class="takeaway-list">
+                    <li>Structured output schema ≠ structured system prompt. Learn the difference early.</li>
+                    <li>Hiding AI provenance increased user trust. That has ethical implications I haven't fully resolved.</li>
+                    <li>The "don't overwhelm beginners" constraint was the most valuable design decision in the project.</li>
+                    <li>Shipping v1 with rough edges was correct. The feedback I got in week one restructured the roadmap for v2.</li>
+                </ul>
+            </div>
+
+        </article>
+
+        <!-- LINK BAR -->
+        <div class="link-bar">
+            <a href="https://skillforge.app" class="link-btn link-btn-primary" target="_blank" rel="noopener noreferrer">
+                ↗ Live project
+            </a>
+            <a href="https://github.com/parth-khadke/skillforge" class="link-btn link-btn-ghost" target="_blank" rel="noopener noreferrer">
+                GitHub
+            </a>
+        </div>
+
+        <!-- PROJECT PREV / NEXT NAV -->
+        <nav class="project-nav" aria-label="Project navigation">
+            <a href="../projects.html">
+                ← All projects
+            </a>
+            <a href="project2.html">
+                <span>
+                    <span class="nav-label">Next</span>
+                    Commit →
+                </span>
+            </a>
+        </nav>
+
+    </main>
+
+    <footer>
+        <span class="footer-copy">&copy; 2026 Parth Khadke</span>
+        <a href="../index.html" class="footer-link">← Back home</a>
+    </footer>
+
+</body>
+</html>
